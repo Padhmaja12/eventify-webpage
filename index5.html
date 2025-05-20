@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Event Webpage</title>
+  <style>
+    /* Basic Reset and Styling */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    /* Navbar Styling */
+    nav {
+      background-color: #005f73;
+      color: white;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      cursor: default;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      color: #94d2bd;
+    }
+
+    /* Mobile Menu Button */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+    }
+
+    .menu-toggle span {
+      height: 3px;
+      width: 25px;
+      background: white;
+      margin-bottom: 4px;
+      border-radius: 2px;
+    }
+
+    /* Responsive Navbar */
+    @media (max-width: 768px) {
+      nav ul {
+        position: fixed;
+        top: 60px;
+        right: -100%;
+        background-color: #005f73;
+        height: calc(100% - 60px);
+        width: 200px;
+        flex-direction: column;
+        padding-top: 2rem;
+        gap: 1rem;
+        transition: right 0.3s ease;
+      }
+
+      nav ul.active {
+        right: 0;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+    }
+
+    /* Sections Styling */
+    section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    section h2 {
+      margin-bottom: 1rem;
+      color: #0a9396;
+      text-align: center;
+    }
+
+    section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #333;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #005f73;
+      color: white;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">Eventify</div>
+    <div class="menu-toggle" id="menu-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul id="navbar-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://example.com" target="_blank" rel="noopener noreferrer">Other Page</a></li>
+    </ul>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home">
+    <h2>Welcome to Eventify</h2>
+    <p>
+      Discover amazing events happening around you. Join our community to stay updated and make meaningful connections.
+    </p>
+  </section>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2>About Us</h2>
+    <p>
+      Eventify is dedicated to bringing people together through exciting and engaging events. Our mission is to inspire, educate, and connect.
+    </p>
+  </section>
+
+  <!-- Schedule Section -->
+  <section id="schedule">
+    <h2>Event Schedule</h2>
+    <p>
+      The event kicks off at 9 AM with a keynote speaker, followed by breakout sessions and panel discussions throughout the day. Don't miss the closing ceremony and networking hour at 6 PM.
+    </p>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>
+      Have questions or want to get involved? Reach out to us anytime via email or social media. We're here to help you make the most out of your event experience.
+    </p>
+  </section>
+
+  <footer>
+    &copy; 2025 Eventify. All rights reserved.
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuToggle = document.getElementById('menu-toggle');
+    const navLinks = document.getElementById('navbar-links');
+
+    menuToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+    // Smooth scrolling for internal links
+    document.querySelectorAll('nav ul li a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        navLinks.classList.remove('active'); // close menu on mobile after click
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+  </script>
+</body>
+</html>
